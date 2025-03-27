@@ -5,14 +5,16 @@ body {
   height: 100%;
   overflow-x: hidden; /* Supprime tout débordement horizontal */
 }
-
 header {
+  position: sticky;
+  top: 0;
   justify-content: space-between;
   align-items: center;
   padding: 10px 50px;
   background-color: black;
   color: white;
-  z-index: 10;
+  z-index: 100;
+  display: flex;
 }
 
 nav ul {
@@ -56,22 +58,19 @@ body {
   justify-content: start; /* Aligner le div à gauche */
 }
 
-main::before {
+.first_main::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Opacité de 50% */
-  z-index: 1; /* Place l'overlay au-dessus de l'image */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* Change l'opacité ici (0.5 = 50% sombre) */
+  z-index: 1;
 }
 .submenu {
   list-style: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   padding: 0;
   margin: 0;
   display: none;
@@ -88,27 +87,20 @@ main::before {
 }
 .submenu li {
   padding: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   border-bottom: 1px solid gray;
 }
+
 .submenu_1 {
   display: none;
   position: absolute;
   top: 0;
   left: 100%;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   padding: 0;
   margin: 0;
   width: 150px;
   border-radius: 5px;
-}
-.submenu_1 li {
-  padding: 10px;
-  color: white;
-  border-bottom: 1px solid gray;
-}
-.submenu_2 {
-  display: none;
 }
 
 .submenu li:last-child {
@@ -122,143 +114,25 @@ main::before {
 .submenu li:hover .submenu_1 {
   display: block;
 }
-.submenu_2 {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
+.submenu > li:hover {
+  background-color: #ababab; /* Gris clair */
+  transition: background 0.3s ease-in-out;
 }
+.submenu_1 > li:hover {
+  background-color: #ababab; /* Gris clair */
+  transition: background 0.3s ease-in-out;
+}
+
 .submenu li:hover .submenu_2 {
   display: block;
 }
-.submenu_3 {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.submenu li:hover .submenu_3 {
-  display: block;
-}
-.submenu_4 {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.submenu li:hover .submenu_4 {
-  display: block;
-}
-.submenu_5 {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.submenu li:hover .submenu_5 {
-  display: block;
-}
-.submenu_6 {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.submenu li:hover .submenu_6 {
-  display: block;
-}
-.submenu li:hover .submenu_2 {
-  display: block;
-}
+
 .menu {
   margin-left: -60px;
   margin-top: -20px;
 }
 #text_logo {
   font-size: 20px;
-}
-.submenu_c_1 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-/* Afficher le sous-menu lorsque l'on survole l'élément parent */
-.menu li:hover .submenu_c_1 {
-  display: block;
-}
-
-.submenu_s_1 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.menu li:hover .submenu_s_1 {
-  display: block;
-}
-.submenu_n_1 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.menu li:hover .submenu_n_1 {
-  display: block;
-}
-.submenu_t_1 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: black;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-  border-radius: 5px;
-}
-.menu li:hover .submenu_t_1 {
-  display: block;
 }
 
 h1 {
@@ -314,6 +188,7 @@ main {
 
   list-style: none;
   padding: 0% 20%;
+  overflow: hidden;
 }
 .list_des_catégories li {
   margin: 0;
@@ -323,7 +198,7 @@ a {
   text-decoration: none;
 }
 .list_des_catégories a:hover {
-  background: #c00f62; /* Couleur au survol */
+  background: #8e8c8c; /* Couleur au survol */
 }
 .list_des_catégories a {
   display: block;
@@ -335,7 +210,772 @@ a {
   background: #e9ecef; /* Fond gris clair */
 }
 
+.category_link {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  display: inline-block;
+  transition: background 0.3s ease-in-out;
+}
+
+.category_link:hover,
+.category_link.active {
+  background-color: #8e8c8c; /* Gris clair */
+  border-radius: 5px; /* Optionnel pour arrondir les bords */
+}
+.list_des_catégories li:first-child .category_link {
+  border-top-left-radius: 20px; /* Arrondir les bords */
+  border-bottom-left-radius: 20px;
+}
+.list_des_catégories li:last-child .category_link {
+  border-top-right-radius: 20px; /* Arrondir les bords */
+  border-bottom-right-radius: 20px;
+}
+.list_des_catégories li:first-child .category_link:hover {
+  background-color: #8e8c8c; /* Un peu plus foncé pour voir l'effet */
+}
+
 .tab-nav ul {
   margin: 0;
   justify-content: center;
+}
+.voiture_grille {
+  position: relative;
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Animation fluide */
+}
+.text_prix {
+  font-weight: bold;
+  padding: 10%;
+  justify-content: center;
+}
+.v2 {
+  padding: 0 20%;
+  margin-top: -50px; /* Remonte .v2 vers l'image */
+  flex-grow: 1;
+}
+.titre_voiture {
+  justify-content: center;
+  font-weight: bolder;
+  font-size: xx-large;
+  margin-bottom: -5px;
+}
+.v1 {
+  position: relative;
+  padding: 0% 5%;
+  flex: 0 0 calc(100% / 4); /* Affiche 3 éléments à la fois */
+  overflow: hidden;
+  transition: margin-bottom 0.3s ease-in-out; /* Animation pour éviter les sauts */
+  min-height: 450px; /* Augmente la hauteur pour loger les boutons */
+  width: 40%;
+
+  display: flex; /* Active flexbox */
+  flex-direction: column; /* Organise le contenu en colonne */
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Centre les éléments horizontalement */
+}
+
+.v1 img {
+  width: 100%;
+  height: auto;
+}
+.savoir_plus {
+  justify-content: center;
+  color: blue;
+}
+.original {
+  display: flex;
+  flex-direction: column;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute; /* le positionne par rapport au carrouseel*/
+  top: 50%;
+  transform: translateY(-50%); /* Centre verticalement */
+  font-size: 60px;
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  color: white;
+  border: none;
+  padding: 10px;
+  z-index: 10; /* S'assure que les boutons sont au-dessus des images */
+}
+.prev {
+  left: 10px;
+}
+
+/* Bouton droit */
+.next {
+  right: 10px;
+}
+.caroussel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.voiture_grille1 {
+  display: none;
+}
+
+.voiture_grille2 {
+  display: none;
+}
+/* Boutons cachés */
+.buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column; /* Empile les boutons verticalement */
+  gap: 8px; /* Espace entre les boutons */
+  width: 80%; /* Ajuste la largeur */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.v1:hover {
+  box-shadow: 10px 4px 10px rgba(186, 4, 4, 0.2);
+}
+.v1:hover .buttons {
+  opacity: 1; /* Afficher les boutons seulement au hover */
+}
+.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+#titre_proj {
+  color: black;
+  padding: 5% 4%;
+}
+.after_car h3 {
+  padding: 0% 4%;
+  margin-top: -30px;
+}
+.new_carouss {
+  display: flex;
+
+  width: 100%;
+}
+.card {
+  position: relative;
+  width: 30%; /* Garde la largeur normale */
+  height: 50%; /* Réduit la hauteur */
+  overflow: hidden; /* Empêche tout dépassement */
+  margin: 1%;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garde l’image proportionnelle */
+  border-radius: 10px;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Applique l'opacité sur toute la carte */
+  z-index: 1; /* Place l'overlay au-dessus de l'image */
+  border-radius: 10px;
+}
+.titre_card {
+  position: absolute;
+  top: 70%; /* Ajuste la position verticale */
+  left: 0; /* Aligné au bord gauche */
+  width: 100%; /* Même largeur que .card */
+  text-align: center; /* Centre le texte */
+  font-size: 25px;
+  font-weight: bold;
+  color: aliceblue;
+  z-index: 10; /* S'assure que le texte est au premier plan */
+  white-space: normal; /* Permet le retour à la ligne */
+  word-wrap: break-word; /* Coupe les mots si nécessaire */
+  padding: 0 10px; /* Ajoute un léger padding pour éviter que le texte touche les bords */
+  box-sizing: border-box; /* Inclut le padding dans la largeur */
+}
+.imge_card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* pour couvrir tout le conteneur sans déformation */
+  z-index: -1; /* place l'image en arrière-plan */
+}
+.card button {
+  position: absolute;
+  top: 85%; /* Place le bouton en dessous du texte */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 2;
+}
+.card button:hover {
+  background-color: #0056b3;
+}
+.card:hover {
+  transform: scale(1.05); /* Zoom léger */
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Ombre portée */
+}
+
+.first_main_1 {
+  position: relative;
+  background: url("https://images.netdirector.co.uk/gforces-auto/image/upload/w_1351,h_760,q_auto,c_fill,f_auto,fl_lossy/auto-client/10d21e13939409c54ccd83a09b0de821/mercedes_benz_cle_coupe_c236_exterior_media_gallery_frontdesign_2176x1224_05_2023.jpg")
+    center/cover no-repeat;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start; /* Aligner le div à gauche */
+}
+.last_para {
+  padding: 20px;
+}
+
+.last_card {
+  width: 100%; /* Prend toute la largeur */
+  display: flex; /* Active flexbox pour aligner les enfants */
+  justify-content: center; /* Centre les cartes horizontalement */
+  gap: 20px; /* Espacement entre les cartes */
+  margin-top: 20px;
+}
+
+.card_1 {
+  width: 20%; /* Définit la largeur de chaque carte */
+  background-color: lightgray; /* Juste pour voir la carte */
+  padding: 10px;
+  border-radius: 10px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.card_1 img {
+  width: 100%; /* L’image occupe toute la largeur */
+  height: auto; /* Garde le ratio */
+  border-radius: 10px;
+}
+.custom_button {
+  border-radius: 30px 30px;
+  padding: 15px 35px;
+}
+
+.half_1 {
+  position: relative;
+  background: url("https://images.netdirector.co.uk/gforces-auto/image/upload/w_377,h_283,q_auto,c_fill,f_auto,fl_lossy/auto-client/1a38101a2568576f3c744c411c660c87/pc501463.jpg")
+    center/cover no-repeat;
+  height: 100vh;
+  width: 100%;
+  justify-content: center; /* Centre horizontalement */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Change l'opacité ici (0.5 = 50% sombre) */
+}
+.half_1 button {
+  justify-content: center;
+}
+
+.half_1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(
+    205,
+    205,
+    205,
+    0.5
+  ); /* Change l'opacité ici (0.5 = 50% sombre) */
+  z-index: 1;
+}
+.button_2 {
+  display: flex; /* Active le mode de mise en page flex */
+  flex-direction: column; /* Aligne les éléments en colonne */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  text-align: center; /* Centre le texte à l'intérieur de .button */
+  z-index: 20;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.button_2 .fort {
+  width: 100%;
+  max-width: 60%; /* Limite la largeur de l'élément à 60% de son conteneur parent */
+  margin: 0 auto; /* Centrer l'élément horizontalement */
+  text-align: center; /* Centrer le texte horizontalement */
+}
+
+.button_2 h3 {
+  font-size: x-large;
+  color: rgb(248, 248, 248);
+  margin: 20px 0;
+  word-wrap: break-word; /* Permet au texte de se casser et de sauter à la ligne si nécessaire */
+  white-space: normal; /* Autorise le passage à la ligne si le texte est trop long */
+}
+.button_2 .custom_button {
+  color: rgb(255, 255, 255);
+  font-size: large;
+}
+/* Styles généraux du footer */
+footer {
+  background-color: #000000; /* Fond sombre */
+  color: white; /* Texte en blanc */
+  padding: 50px 0; /* Espacement intérieur */
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap; /* Permet au footer de s'adapter aux différentes tailles d'écran */
+}
+
+.footer-section {
+  width: 30%; /* Chaque section prend 30% de la largeur */
+  padding: 0 20px;
+}
+
+.footer-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer-section p,
+.footer-section ul {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 5px 0;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  color: #40a9ff; /* Couleur d'accentuation pour le hover */
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.social-links a:hover img {
+  transform: scale(1.1); /* Agrandit l'icône au survol */
+}
+
+.footer-bottom {
+  background-color: #000000;
+  color: #777;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 14px;
+}
+.fort_2 {
+  height: 500px;
+  width: 900px;
+  display: flex;
+  background: rgb(255, 255, 255); /* Change l'opacité ici (0.5 = 50% sombre) */
+  border-radius: 20px;
+}
+#left_part {
+  flex: 1; /* Prend la moitié gauche */
+  background-color: rgb(255, 255, 255); /* Juste pour la visibilité */
+  z-index: 10;
+}
+
+#right_part {
+  flex: 1; /* Prend la moitié droite */
+  background-color: rgb(255, 255, 255); /* Juste pour la visibilité */
+  z-index: 10;
+  display: flex;
+  flex-direction: column; /* Aligner le tout verticalement */
+  align-items: center; /* Centrer les éléments */
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 5% 10%;
+}
+.circle_2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 5% 0%;
+  border: 3px solid black; /* Ajoute une bordure noire de 3px */
+}
+.line {
+  width: 100px; /* Longueur du trait */
+  height: 7px; /* Largeur du trait */
+  background-color: black; /* Couleur du trait */
+  margin: 10% 5% 10% 0%; /* Décaler à gauche avec 5% */
+}
+form {
+  display: flex;
+  flex-direction: column; /* Aligner les champs verticalement */
+  align-items: center; /* Centrer les champs horizontalement */
+  width: 100%; /* Assurer que le formulaire occupe toute la largeur */
+}
+.top-row {
+  display: flex; /* Aligner les éléments sur la même ligne */
+  align-items: center; /* Centrer les éléments verticalement */
+  justify-content: center; /* Centrer les éléments horizontalement */
+}
+input {
+  width: 50%; /* Les inputs prennent toute la largeur de leur parent */
+  padding: 10px; /* Espacement intérieur */
+  font-size: 16px; /* Taille de police */
+  margin-right: 10px;
+  border: 1px solid #ccc; /* Bordure des inputs */
+  border-radius: 4px; /* Coins arrondis */
+  margin-left: auto; /* Décale l'input à droite */
+}
+
+input[type="text"]:focus {
+  border-color: #3498db; /* Couleur de bordure lorsqu'on clique sur l'input */
+  outline: none; /* Enlever l'outline par défaut */
+}
+form p {
+  width: 100%; /* Les <p> occuperont toute la largeur disponible */
+  display: flex; /* Aligner les labels et inputs sur la même ligne */
+  margin: 10px 0; /* Espacement entre les champs de formulaire */
+  justify-content: flex-start; /* Aligner à gauche */
+}
+.circle_3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 5% 0%;
+  border: 3px solid black; /* Ajoute une bordure noire de 3px */
+}
+
+.submenu a {
+  color: rgb(255, 255, 255); /* Assurer que le texte du lien est visible */
+  text-decoration: none; /* Enlever le soulignement par défaut */
+}
+
+.submenu a:hover {
+  text-decoration: underline; /* Ajouter un soulignement au survol */
+}
+#stp {
+  width: 100%; /* Prend toute la largeur du parent */
+  display: flex; /* Pour que les éléments restent alignés en ligne */
+  justify-content: center; /* Centrer les éléments horizontalement */
+  height: 20%;
+}
+
+#last {
+  height: 500px;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  background: rgb(255, 255, 255); /* Change l'opacité ici (0.5 = 50% sombre) */
+}
+.plusieurs_images {
+  display: flex;
+}
+
+.img1 {
+  position: relative;
+  display: inline-block;
+  padding: 1%;
+  overflow: hidden; /* Cache tout débordement */
+}
+
+.img1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.img1 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: max-content;
+}
+
+.img1:hover img {
+  transform: scale(1.07); /* Zoom interne */
+}
+
+.img2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  overflow: hidden; /* Cache tout débordement */
+}
+
+.img2 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.img2 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  width: max-content;
+}
+.img3 {
+  position: relative;
+  display: inline-block;
+  padding: 1%;
+  height: 40%;
+}
+
+.img3 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.img3 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: max-content;
+}
+.im3_1 {
+  position: relative;
+  display: inline-block;
+  padding: 1%;
+  height: 60%;
+  overflow: hidden;
+}
+
+.im3_1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; /* Permet de garder le cadrage */
+  transition: transform 0.3s ease-in-out;
+}
+
+.im3_1 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: max-content;
+}
+.im3_1:hover img {
+  transform: scale(1.2); /* Zoom interne */
+}
+.main_im_1 {
+  position: relative;
+  display: inline-block;
+  padding: 1%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main_im_2 {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  display: flex;
+}
+.img2_1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  height: 70%;
+  overflow: hidden;
+}
+
+.img2_1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; /* Permet de garder le cadrage */
+  transition: transform 0.3s ease-in-out;
+}
+
+.img2_1 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  width: max-content;
+}
+.img2_1:hover img {
+  transform: scale(1.07); /* Zoom interne */
+}
+.img2_2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  overflow: hidden;
+  object-fit: cover; /* Permet de garder le cadrage */
+  transition: transform 0.3s ease-in-out;
+}
+
+.img2_2 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.img2_2 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  width: max-content;
+}
+.img2_2:hover img {
+  transform: scale(1.07); /* Zoom interne */
+}
+.im3_2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  height: 70%;
+  overflow: hidden;
+}
+
+.im3_2 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; /* Permet de garder le cadrage */
+  transition: transform 0.3s ease-in-out;
+}
+
+.im3_2 > h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Optionnel : rend le texte plus lisible */
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  width: max-content;
+}
+.im3_2:hover img {
+  transform: scale(1.07); /* Zoom interne */
 }
